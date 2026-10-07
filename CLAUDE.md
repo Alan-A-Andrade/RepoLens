@@ -53,6 +53,8 @@ To scope a command to one workspace, use `pnpm --filter web <script>` or `pnpm -
 
 Next.js (latest stable, App Router) · strict TypeScript · Tailwind CSS · Radix primitives · GraphQL Code Generator (typed documents) · TanStack Query · Auth.js (GitHub OAuth) · Neon Postgres + Kysely · Vercel AI SDK · Vitest + React Testing Library · Playwright · Storybook · GitHub Actions · Vercel.
 
+pnpm 12 fails `pnpm install --frozen-lockfile` in CI when a dependency has a build script that hasn't been reviewed. Locally this is only a warning. When you add a dependency, check the install output for "Ignored build scripts" and list each one under `allowBuilds` in `pnpm-workspace.yaml` (`true` to allow, `false` to deny).
+
 Don't add a dependency that overlaps these, such as Apollo, Redux, an ORM besides Kysely, or another component library, without an ADR.
 
 ## Rendering strategy
