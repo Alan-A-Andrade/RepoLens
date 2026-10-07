@@ -3,7 +3,7 @@ import { getRepoSummary } from "@/lib/github/repo-summary";
 
 const FEATURED = [
   ["vercel", "next.js"],
-  ["facebook", "react"],
+  ["react", "react"],
   ["tailwindlabs", "tailwindcss"],
 ] as const;
 
