@@ -57,6 +57,13 @@ pnpm 12 fails `pnpm install --frozen-lockfile` in CI when a dependency has a bui
 
 Don't add a dependency that overlaps these, such as Apollo, Redux, an ORM besides Kysely, or another component library, without an ADR.
 
+## Deployment
+
+The Vercel project `repolens` has root directory `apps/web`, Node 24, and is connected to GitHub. Pushes to `main` deploy to production at https://repolens-five-wine.vercel.app, and each PR gets a preview deployment.
+- The build command is `cd ../.. && pnpm turbo run build --filter=web`, so codegen runs before `next build`. Don't switch it back to plain `next build`.
+- `GITHUB_TOKEN` is a fine-grained, read-only token for public repos, set as a Sensitive variable for Production and Preview. New server env vars must be added to both environments **and** to `turbo.json` `build.env`, or Turborepo will reuse a cached build that ignores them.
+- Preview URLs are behind Vercel Authentication. Use `vercel curl <url>` to fetch them.
+
 ## Rendering strategy
 
 Each route has a deliberate rendering mode. Don't change one without updating ADR 3.
