@@ -1,0 +1,4 @@
+pnpm-lock.yaml
+**/src/gql/**
+**/schema/*.graphql
+*.md
